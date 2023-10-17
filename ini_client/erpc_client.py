@@ -32,7 +32,7 @@ def mode_get(filename):
 		handle.close()
 	print('{} received'.format(filename))
 
-print('Client is now activated')
+print('Client is now activated\ntype "help" to check the command list')
 while True:
 	arg = input('> ')
 	argv = arg.split()
@@ -42,18 +42,32 @@ while True:
 	if len(argv) == 2:
 		filename = argv[1]
 	
-	if mode == 'quit':
+	if mode == 'quit' and len(argv) == 1:
 		print('Closing Client...')
 		sys.exit(1)
+	elif mode == 'help' and len(argv) == 1:
+		print("How to use this thing:\n")
+		print("-  help")
+		print("   ask for help\n")
+		print("-  listfiles")
+		print("   show list of files in the server\n")
+		print("-  get [filename]")
+		print("   copy a file from server to this directory\n")
+		print("-  send [filename]")
+		print("   copy a file from this directory to the server\n")
+		print("-  quit")
+		print("   to quit\n")
+	elif mode == 'listfiles' and len(argv) == 1:
+		print(proxy.list_files())
 	elif mode == 'get':
 		if filename is not None:
 			mode_get(filename)
 		else :
-			print('Missing argumen: use "get [filename]"')
+			print('Missing argument: use "get [filename]"')
 	elif mode == 'send':
 		if filename is not None:
 			mode_send(filename)
 		else :
-			print('Missing argumen: use "send [filename]"')
+			print('Missing argument: use "send [filename]"')
 	else :
 		print('Invalid Mode!')

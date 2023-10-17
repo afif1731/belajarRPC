@@ -3,7 +3,13 @@ from xmlrpc.client import Binary
 import os
 
 server = SimpleXMLRPCServer(('localhost', 3000), logRequests=True)
-	
+
+def list_files():
+	dirnow = os.path.dirname(os.path.realpath(__file__))
+	file_path = dirnow + '/shared'
+	print("send list of all available files")
+	return os.listdir(file_path)
+
 def file_to_server(thedata, filename):
 	dirnow = os.path.dirname(os.path.realpath(__file__))
 	this_file_path = dirnow + '/shared/' + filename
@@ -29,6 +35,7 @@ def client_get_file(filename):
 		handle.close()
 
 server.register_function(file_to_server, 'file_to_server')
+server.register_function(list_files, 'list_files')
 server.register_function(client_get_file, 'client_get_file')
 
 if __name__ == '__main__':
