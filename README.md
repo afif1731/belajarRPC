@@ -1,5 +1,5 @@
 # belajarRPC
-Catatan: baru dicoba di ubuntu & vm generic/ubuntu2004
+Catatan: Sudah diuji di ubuntu, windows via vscode terminal, & vm generic/ubuntu2004
 ## Menyalakan Server
 - Masuk ke folder `ini_server`
 - buka terminal (ubuntu atau vscode windows)
